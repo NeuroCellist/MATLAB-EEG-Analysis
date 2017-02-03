@@ -190,7 +190,7 @@ end
 FFTData = CorticalFFTdata(:,1:32);
 %FFTData = cat(2,Data(:,1:25),Data(:,27:31));
 mag2hz= nan(32,1);
-load ChanCords32
+load ChanCords32v2
 %finds the magnitude at 2Hz in the FFT for each electrode channel
 for i = 1:32
     mag2hz(i,1)=FFTData(64,i);
