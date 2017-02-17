@@ -8,17 +8,18 @@ close all
 clc
 
 %% (1) Define File to be used
-vhdrName = ('S1_Rand_1.vhdr');
-vhdrName2 = ('S1_Rand_2.vhdr');
-vhdrName3 = ('S1_Rand_3.vhdr');
-vhdrName4 = ('S1_Rand_4.vhdr');
-vhdrName5 = ('S1_Rand_5.vhdr');
-vhdrName6 = ('S1_Rand_6.vhdr');
+vhdrName = ('201702_Comp2_1.vhdr');
+vhdrName2 = ('201702_Comp2_2.vhdr');
+vhdrName3 = ('201702_Comp2_3.vhdr');
+vhdrName4 = ('201702_Comp2_4.vhdr');
+vhdrName5 = ('201702_Comp2_5.vhdr');
+vhdrName6 = ('201702_Comp2_6.vhdr');
 
-
-ContainingPath = '/Users/charleswasserman/Dropbox (MDL)/ASDMusic/_DATA/EEG/201701';
+addpath('/Users/charleswasserman/Dropbox (MDL)/rhyEeg/MATLAB Analysis code');
+ContainingPath = '/Users/charleswasserman/Dropbox (MDL)/ASDMusic/_DATA/EEG/201702/raw data';
 Threshold = 10000;
 ArtifactThreshold = 150;
+clc
 %% (2) Calls Preprocessing Code and returnes basic filtered Data with new Channels from StimTrak  %%
 [ filteredEEGdata, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrName, ContainingPath);
 [ filteredEEGdata2, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrName2, ContainingPath);
@@ -43,19 +44,19 @@ plot(filteredEEGdata6(:,end),'DisplayName','filteredEEGdata2(:,end)','YDataSourc
 %% (2.5)OPTIONAL
 %Trim files to eliminate extra pre and post recording data
 
-%Start is determined individually for each recording in order to remove
+%Stop is determined individually for each recording in order to remove
 %extra data before stim presentation began
 
-%Stop is determined by finding the last tone onset in the StimTrak channel
-%and adding 9sec (45000 samples) NOTE: if the recording was stopped too
+%Stop is determined by finding the target tone onset in the StimTrak channel
+%and subtracting 33.5sec (167500 samples) NOTE: if the recording was stopped too
 %soon this point may not exist.
 
-stop1 = 189300;
-stop2 = 187300;
-stop3 = 187400;
-stop4 = 186800;
-stop5 = 186100;
-stop6 = 189600;
+stop1 = 184700;
+stop2 = 182200;
+stop3 = 183300;
+stop4 = 183100;
+stop5 = 191200;
+stop6 = 180800;
 
 durration = 167499;
 
@@ -108,7 +109,7 @@ StimCheck
 [ Pre5, Post5] = NEWSegmentation4s_1Ch( filteredEEGdata5, Threshold, Fs);
 [ Pre6, Post6] = NEWSegmentation4s_1Ch( filteredEEGdata6, Threshold, Fs);
 
-%% StdAR Steam (5) Calls Code That Epochs Data and Outputs a multidimensional matrix
+% StdAR Steam (5) Calls Code That Epochs Data and Outputs a multidimensional matrix
 [ CorticalEpochData ] = EpochingCortical_1Ch( filteredEEGdata, Pre, Post, Fs);
 [ CorticalEpochData2 ] = EpochingCortical_1Ch( filteredEEGdata2, Pre2, Post2, Fs);
 [ CorticalEpochData3 ] = EpochingCortical_1Ch( filteredEEGdata3, Pre3, Post3, Fs);
@@ -116,7 +117,7 @@ StimCheck
 [ CorticalEpochData5 ] = EpochingCortical_1Ch( filteredEEGdata5, Pre5, Post5, Fs);
 [ CorticalEpochData6 ] = EpochingCortical_1Ch( filteredEEGdata6, Pre6, Post6, Fs);
 
-%% StdAR Steam (5.1) Removes first 4sec epoch from each trial
+% StdAR Steam (5.1) Removes first 4sec epoch from each trial
 
 CorticalEpochData = CorticalEpochData(:,:,2:8);
 CorticalEpochData2 = CorticalEpochData2(:,:,2:8);
@@ -140,8 +141,8 @@ save(file1,'CorticalEpochData');
 [bTaperArtifactedEpochData] = BlackmanTaper(ArtifactedEpochData);
 [hTaperArtifactedEpochData] = HanningTaper(ArtifactedEpochData);
 %% (8) Calls Code to Perform FFT and Average per Electrode and plot response CORTICAL
-[ bCorticalFFTdata ] = CortFFT_6Parts_1Ch( bTaperArtifactedEpochData, Fs );
-[ hCorticalFFTdata ] = CortFFT_6Parts_1Ch( hTaperArtifactedEpochData, Fs );
+%[ bCorticalFFTdata ] = CortFFT_6Parts_1Ch( bTaperArtifactedEpochData, Fs );
+%[ hCorticalFFTdata ] = CortFFT_6Parts_1Ch( hTaperArtifactedEpochData, Fs );
 [ CorticalFFTdata ] = CortFFT_6Parts_1Ch( ArtifactedEpochData, Fs );
 
 %%

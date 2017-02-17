@@ -15,12 +15,12 @@ for k = 1:channels
 end
 ArtifactedEpochData = EpochData;
 
-for q = 1:channels
+for q = 1:(channels - 1)
     %assumes that first timepoint is representative of entire trial
 nanTrials(q)=sum(isnan(ArtifactedEpochData(1,q,:)));
 end
 TotalNan = sum(nanTrials);
-PercArtifact=(TotalNan/(trials*channels))*100;
+PercArtifact=(TotalNan/(trials*(channels-1)))*100;
 
 %ArtifactedEpochData = mean(ArtifactedEpochData,3);
 %ArtifactedEpochData = nanmean(ArtifactedEpochData,3);

@@ -184,23 +184,27 @@ end
 
 %% =================================
 %% (10) Head Maps
-%Creates HeadMaps of 2Hz Activity
-% removes StimTrak Channel as they are unbalenced for
-% interpolation function
-FFTData = CorticalFFTdata(:,1:32);
-%FFTData = cat(2,Data(:,1:25),Data(:,27:31));
-mag2hz= nan(32,1);
-load ChanCords32v2
-%finds the magnitude at 2Hz in the FFT for each electrode channel
-for i = 1:32
-    mag2hz(i,1)=FFTData(64,i);
-end
-[z,map]=eegheadplot(mag2hz,chCord,[],[],'cubic',[]);
-figure;imshow(z);
-map=colormap(jet(N));
-map(1,:)=[0 0 0];
-colormap(map)
-colorbar
+% %Creates HeadMaps of 2Hz Activity
+
+[z,Jetmap] = RelDelta2HzHeadMap(Rand_PilotN3_FFTData);
+
+
+% % removes StimTrak Channel as they are unbalenced for
+% % interpolation function
+% FFTData = CorticalFFTdata(:,1:32);
+% %FFTData = cat(2,Data(:,1:25),Data(:,27:31));
+% mag2hz= nan(32,1);
+% load ChanCords32v2
+% %finds the magnitude at 2Hz in the FFT for each electrode channel
+% for i = 1:32
+%     mag2hz(i,1)=FFTData(64,i);
+% end
+% [z,map]=eegheadplot(mag2hz,chCord,[],[],'cubic',[]);
+% figure;imshow(z);
+% map=colormap(jet(N));
+% map(1,:)=[0 0 0];
+% colormap(map)
+% colorbar
 %% (12) Analysis of Beta amplitude oscilations (wants data before ArtRej and Avging in 2D)
 
 [ PercArtifact, BetaAmpOscCorticalFFTData] = AmpOscFFT(CorticalEpochData, 30, 13, Fs, 150, 3);
