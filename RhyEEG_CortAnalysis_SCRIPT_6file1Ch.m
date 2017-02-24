@@ -51,11 +51,11 @@ plot(filteredEEGdata6(:,end),'DisplayName','filteredEEGdata2(:,end)','YDataSourc
 %and subtracting 33.5sec (167500 samples) NOTE: if the recording was stopped too
 %soon this point may not exist.
 
-stop1 = 184700;
+stop1 = 184600;
 stop2 = 182200;
-stop3 = 183300;
-stop4 = 183100;
-stop5 = 191200;
+stop3 = 183200;
+stop4 = 183000;
+stop5 = 191100;
 stop6 = 180800;
 
 durration = 167499;

@@ -186,7 +186,7 @@ end
 %% (10) Head Maps
 % %Creates HeadMaps of 2Hz Activity
 
-[z,Jetmap] = RelDelta2HzHeadMap(Rand_PilotN3_FFTData);
+[z,Jetmap] = RelDelta2HzHeadMap(ISO_PilotN3_FFTData);
 
 
 % % removes StimTrak Channel as they are unbalenced for
