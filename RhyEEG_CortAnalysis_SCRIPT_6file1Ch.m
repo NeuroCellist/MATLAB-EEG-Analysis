@@ -8,15 +8,15 @@ close all
 clc
 
 %% (1) Define File to be used
-vhdrName = ('201702_Comp2_1.vhdr');
-vhdrName2 = ('201702_Comp2_2.vhdr');
-vhdrName3 = ('201702_Comp2_3.vhdr');
-vhdrName4 = ('201702_Comp2_4.vhdr');
-vhdrName5 = ('201702_Comp2_5.vhdr');
-vhdrName6 = ('201702_Comp2_6.vhdr');
+vhdrName = ('201703_Comp1_1.vhdr');
+vhdrName2 = ('201703_Comp1_2.vhdr');
+vhdrName3 = ('201703_Comp1_3.vhdr');
+vhdrName4 = ('201703_Comp1_4.vhdr');
+vhdrName5 = ('201703_Comp1_5.vhdr');
+vhdrName6 = ('201703_Comp1_6.vhdr');
 
 addpath('/Users/charleswasserman/Dropbox (MDL)/rhyEeg/MATLAB Analysis code');
-ContainingPath = '/Users/charleswasserman/Dropbox (MDL)/ASDMusic/_DATA/EEG/201702/raw data';
+ContainingPath = '/Users/charleswasserman/Dropbox (MDL)/ASDMusic/_DATA/EEG/201703/raw eeg';
 Threshold = 10000;
 ArtifactThreshold = 150;
 clc
@@ -51,12 +51,12 @@ plot(filteredEEGdata6(:,end),'DisplayName','filteredEEGdata2(:,end)','YDataSourc
 %and subtracting 33.5sec (167500 samples) NOTE: if the recording was stopped too
 %soon this point may not exist.
 
-stop1 = 184600;
-stop2 = 182200;
-stop3 = 183200;
-stop4 = 183000;
-stop5 = 191100;
-stop6 = 180800;
+stop1 = 177000;
+stop2 = 191300;
+stop3 = 189200;
+stop4 = 186200;
+stop5 = 189600;
+stop6 = 189300;
 
 durration = 167499;
 
