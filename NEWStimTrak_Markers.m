@@ -1,11 +1,8 @@
-function [ Markers ] = StimTrak_Markers16s( StimTrak, Threshold, Fs )
+function [ Markers ] = NEWStimTrak_Markers( StimTrak, Threshold, Fs )
 %StimTrak Markers
 %   expects a single vertical vector of StimTrak data.  Looks for the sound
 %   onsets and marks each onset as a one and all other data points as 0.
 %   outputs this vertical vector
-% Version 16s finds the first onset and then skips 15.95sec of data in
-% order to chop data into every 4 cycles of the rhythym sequence
-
 if nargin <2
 
    Fs = 2000;
@@ -15,6 +12,7 @@ elseif nargin<3
     Fs = 2000;
     display('Using Default Fs = 5000')
 end
+
 
 StimTrak(:,2) = StimTrak(:,1);
 STlength = length(StimTrak(:,2));
@@ -28,7 +26,7 @@ while i <= STlength
         Markers(i,1) = 1;
     end
     if Markers(i,1)== 1
-        i=i+(Fs*15.99);
+        i=i+(Fs*.208);
     else 
         i=i+1;
     end

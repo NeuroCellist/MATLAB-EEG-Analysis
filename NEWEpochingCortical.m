@@ -12,7 +12,8 @@ end
 
 
 Trials=length(Pre);
-for c = 1:33
+channels = size(filteredEEGdata,2);
+for c = 1:channels
 for i = 1:Trials
 StimEpoch(:,c,i) = filteredEEGdata(Pre(i):Post(i),c);
  

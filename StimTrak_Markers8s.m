@@ -8,11 +8,11 @@ function [ Markers ] = StimTrak_Markers8s( StimTrak, Threshold, Fs )
 
 if nargin <2
 
-   Fs = 5000;
+   Fs = 2000;
    Threshold = 700;
    display('Using Default Fs = 5000 and Threshold = 700')
 elseif nargin<3
-    Fs = 5000;
+    Fs = 2000;
     display('Using Default Fs = 5000')
 end
 

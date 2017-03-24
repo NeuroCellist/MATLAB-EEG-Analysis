@@ -1,4 +1,4 @@
-function [ Start_Points Stop_Points ] = NEWSegmentation4s( filteredEEGdata,Threshold, Fs, PreStim, PostStim)
+function [ Start_Points Stop_Points ] = NEWSegmentation4sEMG( filteredEEGdata,Threshold, Fs, PreStim, PostStim)
 %Segmentation for Cortical Time-Domain Frequecy Analysis (chops segments of 16sec durration (4times of the 4sec rhythym sequence)
 %   Detailed explanation goes here
 
@@ -17,10 +17,10 @@ end
 % stimulus is thought to turn on. There is jitter in this estimation.
 sec2pt = 1/Fs;
 
-[index v] = find(filteredEEGdata(:,37) == 1);
+[index v] = find(filteredEEGdata(:,41) == 1);
 clear d
 for x = 1:length(index)
-    for y = 1:33
+    for y = 1:37
         if index(x)+(PostStim/sec2pt)<=length(filteredEEGdata)
             d(:,x,y) = filteredEEGdata(index(x)-(PreStim/sec2pt):index(x)+(PostStim/sec2pt),y);
         end

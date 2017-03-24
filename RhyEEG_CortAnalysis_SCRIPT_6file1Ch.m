@@ -8,25 +8,27 @@ close all
 clc
 
 %% (1) Define File to be used
-vhdrName = ('201703_Comp1_1.vhdr');
-vhdrName2 = ('201703_Comp1_2.vhdr');
-vhdrName3 = ('201703_Comp1_3.vhdr');
-vhdrName4 = ('201703_Comp1_4.vhdr');
-vhdrName5 = ('201703_Comp1_5.vhdr');
-vhdrName6 = ('201703_Comp1_6.vhdr');
+
+subID = '201703';
+Condition = 'Comp2';
+vhdrNames = cell(6,1);
+for i = 1:6  
+vhdrNames{i} = [subID '_' Condition '_' num2str(i) '.vhdr'];
+%vhdrNames{i} = [subID '_' Condition '_' num2str(i)];
+end
 
 addpath('/Users/charleswasserman/Dropbox (MDL)/rhyEeg/MATLAB Analysis code');
-ContainingPath = '/Users/charleswasserman/Dropbox (MDL)/ASDMusic/_DATA/EEG/201703/raw eeg';
+ContainingPath = '//Users/charleswasserman/Dropbox (MDL)/ASDMusic/_DATA/EEG/201703/raw eeg';
 Threshold = 10000;
-ArtifactThreshold = 150;
+ArtifactThreshold = 200;
 clc
 %% (2) Calls Preprocessing Code and returnes basic filtered Data with new Channels from StimTrak  %%
-[ filteredEEGdata, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrName, ContainingPath);
-[ filteredEEGdata2, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrName2, ContainingPath);
-[ filteredEEGdata3, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrName3, ContainingPath);
-[ filteredEEGdata4, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrName4, ContainingPath);
-[ filteredEEGdata5, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrName5, ContainingPath);
-[ filteredEEGdata6, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrName6, ContainingPath);
+[ filteredEEGdata, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrNames{1}, ContainingPath);
+[ filteredEEGdata2, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrNames{2}, ContainingPath);
+[ filteredEEGdata3, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrNames{3}, ContainingPath);
+[ filteredEEGdata4, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrNames{4}, ContainingPath);
+[ filteredEEGdata5, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrNames{5}, ContainingPath);
+[ filteredEEGdata6, Fs ] = BrainVision1Ch_RhyEEG_Preprocess(vhdrNames{6}, ContainingPath);
 
 subplot(3,2,1)
 plot(filteredEEGdata(:,end),'DisplayName','filteredEEGdata(:,end)','YDataSource','filteredEEGdata(:,end)');figure(gcf)
@@ -51,12 +53,12 @@ plot(filteredEEGdata6(:,end),'DisplayName','filteredEEGdata2(:,end)','YDataSourc
 %and subtracting 33.5sec (167500 samples) NOTE: if the recording was stopped too
 %soon this point may not exist.
 
-stop1 = 177000;
-stop2 = 191300;
-stop3 = 189200;
-stop4 = 186200;
-stop5 = 189600;
-stop6 = 189300;
+stop1 = 186300;
+stop2 = 187300;
+stop3 = 188600;
+stop4 = 193200;
+stop5 = 187300;
+stop6 = 183200;
 
 durration = 167499;
 
@@ -138,8 +140,8 @@ save(file1,'CorticalEpochData');
 [ArtifactedEpochData, PercCorticalArtifact] = EpochArtifactRej_nar( CorticalEpochData, ArtifactThreshold );
 
 %%  Applies Window Tapering
-[bTaperArtifactedEpochData] = BlackmanTaper(ArtifactedEpochData);
-[hTaperArtifactedEpochData] = HanningTaper(ArtifactedEpochData);
+% [bTaperArtifactedEpochData] = BlackmanTaper(ArtifactedEpochData);
+% [hTaperArtifactedEpochData] = HanningTaper(ArtifactedEpochData);
 %% (8) Calls Code to Perform FFT and Average per Electrode and plot response CORTICAL
 %[ bCorticalFFTdata ] = CortFFT_6Parts_1Ch( bTaperArtifactedEpochData, Fs );
 %[ hCorticalFFTdata ] = CortFFT_6Parts_1Ch( hTaperArtifactedEpochData, Fs );

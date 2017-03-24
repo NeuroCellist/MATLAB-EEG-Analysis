@@ -1,7 +1,7 @@
 function [ CorticalFFTdata ] =NEWCortFFT_6Parts( ArtifactedEpochData, Fs )
 %CorticalCapFFT Summary of this function goes here
 %   Detailed explanation goes here
-chnames = {'Fp1' 'Fz' 'F3' 'F7' 'FT9' 'FC5' 'FC1' 'C3' 'T7' 'TP9' 'CP5' 'CP1' 'Pz' 'P3' 'P7' 'O1' 'Oz' 'O2' 'P4' 'P8' 'TP10' 'CP6' 'CP2' 'Cz' 'C4' 'T8' 'FT10' 'FC6' 'FC2' 'F4' 'F8' 'Fp2' 'StimTrak'};
+chnames = {'Fp1' 'Fz' 'F3' 'F7' 'FT9' 'FC5' 'FC1' 'C3' 'T7' 'TP9' 'CP5' 'CP1' 'Pz' 'P3' 'P7' 'O1' 'Oz' 'O2' 'P4' 'P8' 'TP10' 'CP6' 'CP2' 'Cz' 'C4' 'T8' 'FT10' 'FC6' 'FC2' 'F4' 'F8' 'Fp2' 'StimTrak' 'Left Hand EMG' 'Right Hand EMG' 'Left Foot EMG' 'Right Foot EMG'};
 trials =size(ArtifactedEpochData,3);
 channels = size(ArtifactedEpochData,2);
 phase1 = nanmean(ArtifactedEpochData(:,:,1:7),3);
@@ -88,7 +88,7 @@ CorticalFFTdata = nanmean(abs(Y),3);
 figure
 for k = 1:channels
     name=chnames{k};
-    subplot(6,6,k)
+    subplot(7,6,k)
     %finds the max amplitude of the fft between .25 and 6Hz in order to
     %normalize for plotting.
     MaxAmp = max(2*abs(CorticalFFTdata(8:192,k)));
