@@ -9,7 +9,7 @@ chan = size(CorticalFFTdata,2);
 sub = size(CorticalFFTdata,3);
 NormedFFTData = zeros(dur,chan,sub);
 for i = 1:size(CorticalFFTdata,3)
-    for k = 1:33
+    for k = 1:chan
     %finds the max amplitude of the fft between .25 and 6Hz in order to
     %normalize for averaging accross subjects.
     MaxAmp = max(2*abs(CorticalFFTdata(8:192,k,i)));
@@ -24,9 +24,9 @@ L = length(CorticalFFTdata/Fs);   % Length of signal
 t = (0:L-1)*T;                % Time vector
 NFFT = L; % length of y
 f = Fs./2*linspace(0,1,NFFT/2+1);
-for k = 1:33
+for k = 1:chan
     name=chnames{k};
-    subplot(6,6,k)
+    subplot(7,6,k)
     %finds the max amplitude of the fft between .25 and 6Hz in order to
     %normalize for plotting.
     %     MaxAmp = max(2*abs(CorticalFFTdata(8:192,k)));

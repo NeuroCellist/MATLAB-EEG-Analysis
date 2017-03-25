@@ -1,14 +1,14 @@
-function [ Start_Points Stop_Points ] = NEWSegmentation4sEMG( filteredEEGdata,Threshold, Fs, PreStim, PostStim)
+function [ Start_Points Stop_Points ] = NEWSegmentation4sEMG( filteredEEGdata, Fs, PreStim, PostStim)
 %Segmentation for Cortical Time-Domain Frequecy Analysis (chops segments of 16sec durration (4times of the 4sec rhythym sequence)
 %   Detailed explanation goes here
 
-if nargin <3
+if nargin <2
     PreStim = .05;
     PostStim = 4;
     Fs = 2000;
     
     display('Using Default Fs, PreStim and PostStim Timings')
-elseif nargin<4
+elseif nargin<3
     PreStim = .05;
     PostStim = 4;
     display('Using Default PreStim and PostStim Timings')
@@ -34,6 +34,7 @@ end
 
 % step 2: find where the stimulus actually begins.
 indexNEW = [];
+Threshold = (.5.* max(filteredEEGdata(:,33)));
 for x = 1:size(d,2)
     x;
     %stimmatrix = abs(d(:,x,2));   %take the absolute value

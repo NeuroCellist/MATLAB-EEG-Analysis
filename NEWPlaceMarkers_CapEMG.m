@@ -1,12 +1,7 @@
-function [ filteredEEGdata ] = NEWPlaceMarkers_CapEMG( filteredEEGdata, Threshold, Fs )
+function [ filteredEEGdata ] = NEWPlaceMarkers_CapEMG( filteredEEGdata, Fs )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
-
-if nargin <2
-   Threshold = 700;
-   display('Using Default Threshold = 700')
-end
-
+Threshold = (.5.* max(filteredEEGdata(:,33)));
 StimTrak = filteredEEGdata(:,33);
 
 [Markers] = StimTrak_Markers(StimTrak, Threshold);
