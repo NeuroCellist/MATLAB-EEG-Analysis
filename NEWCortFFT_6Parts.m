@@ -11,7 +11,7 @@ phase4 = nanmean(ArtifactedEpochData(:,:,22:28),3);
 phase5 = nanmean(ArtifactedEpochData(:,:,29:35),3);
 phase6 = nanmean(ArtifactedEpochData(:,:,36:42),3);
 
-
+fftRes=4; %default is 4
 
 for c = 1:channels
         if c== channels
@@ -20,7 +20,7 @@ for c = 1:channels
         T = 1/Fs;                     % Sample time
         L = length(phase1/Fs);   % Length of signal
         t = (0:L-1)*T;                % Time vector
-        NFFT = L*4; % Next power of 2 from length of y
+        NFFT = L*fftRes; % Next power of 2 from length of y
         Y1 = fft(phase1,NFFT)/L;
         f = Fs./2*linspace(0,1,NFFT/2+1);   
 end
@@ -32,7 +32,7 @@ for c = 1:channels
         T = 1/Fs;                     % Sample time
         L = length(phase2/Fs);   % Length of signal
         t = (0:L-1)*T;                % Time vector
-        NFFT = L*4; % Next power of 2 from length of y
+        NFFT = L*fftRes; % Next power of 2 from length of y
         Y2 = fft(phase2,NFFT)/L;
         f = Fs./2*linspace(0,1,NFFT/2+1);      
 end
@@ -43,7 +43,7 @@ for c = 1:channels
         T = 1/Fs;                     % Sample time
         L = length(phase3/Fs);   % Length of signal
         t = (0:L-1)*T;                % Time vector
-        NFFT = L*4; % Next power of 2 from length of y
+        NFFT = L*fftRes; % Next power of 2 from length of y
         Y3 = fft(phase3,NFFT)/L;
         f = Fs./2*linspace(0,1,NFFT/2+1);      
 end
@@ -54,7 +54,7 @@ for c = 1:channels
         T = 1/Fs;                     % Sample time
         L = length(phase4/Fs);   % Length of signal
         t = (0:L-1)*T;                % Time vector
-        NFFT = L*4; % Next power of 2 from length of y
+        NFFT = L*fftRes; % Next power of 2 from length of y
         Y4 = fft(phase4,NFFT)/L;
         f = Fs./2*linspace(0,1,NFFT/2+1);      
 end
@@ -65,7 +65,7 @@ for c = 1:channels
         T = 1/Fs;                     % Sample time
         L = length(phase5/Fs);   % Length of signal
         t = (0:L-1)*T;                % Time vector
-        NFFT = L*4; % Next power of 2 from length of y
+        NFFT = L*fftRes; % Next power of 2 from length of y
         Y5 = fft(phase5,NFFT)/L;
         f = Fs./2*linspace(0,1,NFFT/2+1);      
 end
@@ -76,7 +76,7 @@ for c = 1:channels
         T = 1/Fs;                     % Sample time
         L = length(phase6/Fs);   % Length of signal
         t = (0:L-1)*T;                % Time vector
-        NFFT = L*4; % Next power of 2 from length of y
+        NFFT = L*fftRes; % Next power of 2 from length of y
         Y6 = fft(phase6,NFFT)/L;
         f = Fs./2*linspace(0,1,NFFT/2+1);      
 end

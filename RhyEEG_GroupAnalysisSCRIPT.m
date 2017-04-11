@@ -8,25 +8,24 @@ s1_ISO_CortData = CorticalEpochData;
 clear CorticalEpochData
 
 %% Concatenating Subjects into a single condition variable
-ISO_PilotN3_FFTData = cat(3, ISO_2p4,ISO_2p6,ISO_2p7);
-Comp1_PilotN3_FFTData = cat(3, Comp1_2p4,Comp1_2p6,Comp1_2p7);
-Comp2_PilotN3_FFTData = cat(3, Comp2_2p4,Comp2_2p6,Comp2_2p7);
-Rand_PilotN3_FFTData = cat(3, Rand_2p4,Rand_2p6,Rand_2p7);
+ISO_N7_FFTData = cat(3, ISO_N7_FFTData,ISO8);
+Comp1_N7_FFTData = cat(3, Comp1_N7_FFTData,C18);
+Comp2_N7_FFTData = cat(3, Comp2_N7_FFTData,C28);
+%Rand_N7_FFTData = cat(3, Rand_2p4,Rand_2p6,Rand_2p7);
 
 %%  FINAL GROUP PLOT
-NEWGroup_CorticalFFT_PLOT( Rand_PilotN3_FFTData, 5000 )
+Fs=2000;
+NEWGroup_CorticalFFT_PLOT( Comp2_N7_FFTData, Fs )
 
 %% FINAL GROUP PLOT W/ Nazoradan Binning Procedure
-Group_CorticalFFT_PLOT_Syl( Comp1_PilotN3_FFTData, 5000)
-%% Final Cortical PLotting (All Subjects, Group Avg, and StimTrak; Cz ONLY)
-FULLCorticalFFT_CzPLOT( ISNR_Comp1, 5000)
-%% Same, but with Fp1 ONLY
-FULLCorticalFFT_Fp1PLOT( ISNR_Comp2, 5000)
-%% Final Group Plot with Nazoradan Normalization
+Group_CorticalFFT_PLOT_Syl( ISO_N7_FFTData, 2000)
+%% Final Cortical PLotting (All Subjects, Group Avg, and StimTrak; One Electrode ONLY)
+FULLCorticalFFT_1ChPLOT( Comp1_N7_FFTData, 'P8', 2000)
 
-Group_CorticalCapFFT_SylviePLOT( ISNR_Comp2, 5000 );
+%% Single Subject, one cond and one elctrode Pressentation Plots
+EEGTapDEMO_1ChPLOT( S1706_ISO_FFT, 'Fp1', S1706_ISO_Tap, 2000 )
 %% Relative Delta Power Head Maps
 %Creates HeadMaps of 2Hz Activity relative to the power in the Delta Band
 %(1-3Hz)
 
-[z,Jetmap] = RelDelta2HzHeadMap(Rand_PilotN3_FFTData);
+[z,Jetmap] = RelDelta2HzHeadMap(Comp1_N7_FFTData);

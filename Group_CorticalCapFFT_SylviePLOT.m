@@ -1,7 +1,7 @@
 function [ CorticalFFTdata_Sylvie ] = Group_CorticalCapFFT_SylviePLOT( CorticalFFTdata, Fs )
 %CorticalCapFFT Summary of this function goes here
 %   Detailed explanation goes here
-chnames = {'Fp1' 'Fz' 'F3' 'F7' 'FT9' 'FC5' 'FC1' 'C3' 'T7' 'TP9' 'CP5' 'CP1' 'Pz' 'P3' 'P7' 'O1' 'Oz' 'O2' 'P4' 'P8' 'CP6' 'CP2' 'Cz' 'C4' 'T8' 'FT10' 'FC6' 'FC2' 'F4' 'F8' 'Fp2' 'StimTrak'};
+chnames = {'Fp1' 'Fz' 'F3' 'F7' 'FT9' 'FC5' 'FC1' 'C3' 'T7' 'TP9' 'CP5' 'CP1' 'Pz' 'P3' 'P7' 'O1' 'Oz' 'O2' 'P4' 'P8' 'TP10' 'CP6' 'CP2' 'Cz' 'C4' 'T8' 'FT10' 'FC6' 'FC2' 'F4' 'F8' 'Fp2' 'StimTrak' 'Left Hand EMG' 'Right Hand EMG' 'Left Foot EMG' 'Right Foot EMG'};
 CorticalFFTdata= nanmean(CorticalFFTdata,3);
 T = 1/Fs;                     % Sample time
 L = length(CorticalFFTdata/Fs);   % Length of signal
@@ -14,7 +14,7 @@ channels = (size(CorticalFFTdata,2));
 bins = size(CorticalFFTdata,1);
 CorticalFFTdata_Sylvie = zeros(bins,channels);
 for i = 1:channels
-    if i == 32
+    if i >= 32
         CorticalFFTdata_Sylvie(:,i) = CorticalFFTdata(:,i);
     end
     for b = 1:bins
@@ -37,9 +37,9 @@ for i = 1:channels
 end
 % Plot single-sided amplitude spectrum.
 figure
-for k = 1:32
+for k = 1:channels
     name=chnames{k};
-    subplot(6,6,k)
+    subplot(7,6,k)
     MaxAmp = max(2*abs(CorticalFFTdata_Sylvie(8:192,k)));
     NormedFFTData= (CorticalFFTdata_Sylvie/MaxAmp);
     plot(f,(2*abs(NormedFFTData(1:NFFT/2+1,k))), 'b')

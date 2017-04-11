@@ -8,7 +8,7 @@ close all
 addpath('/Users/charleswasserman/Dropbox (MDL)/rhyEeg/MATLAB Analysis code');
 clc
 %% (1) Define File to be used
-subID = 'S1705';
+subID = 'S1708';
 Condition = 'Comp2';
 vhdrNames = cell(6,1);
 for i = 1:6  
@@ -34,12 +34,12 @@ ReviewEMG_6trials
 %Stop is determined individually for each recording in order to remove
 %extra data before stim presentation began
 
-stop1 = 74310;
-stop2 = 74480;
-stop3 = 74530;
-stop4 = 74850;
-stop5 = 74320;
-stop6 = 75190;
+stop1 = 73840;
+stop2 = 74940;
+stop3 = 74430;
+stop4 = 74420;
+stop5 = 74180;
+stop6 = 73260;
 
 durration = ((Fs*34)-1);
 
@@ -112,3 +112,8 @@ ArtifactThreshold = 150;
 [file1,path1] = uiputfile('*.mat','Save file');
 cd(path1);
 save(file1,'CorticalFFTdata');
+
+%% HEAD MAPS
+%Creates HeadMaps of 2Hz Activity relative to the power in the Delta Band
+%(1-3Hz)
+[ z,Jetmap, relamp2hz ] = RelDelta2HzHeadMap( CorticalFFTdata );
