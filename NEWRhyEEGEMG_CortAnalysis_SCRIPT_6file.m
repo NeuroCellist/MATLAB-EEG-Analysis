@@ -8,8 +8,8 @@ close all
 addpath('/Users/charleswasserman/Dropbox (MDL)/rhyEeg/MATLAB Analysis code');
 clc
 %% (1) Define File to be used
-subID = 'S1708';
-Condition = 'Comp2';
+subID = 'S1711';
+Condition = 'Rand';
 vhdrNames = cell(6,1);
 for i = 1:6  
 vhdrNames{i} = [subID '_' Condition '_' num2str(i) '.vhdr'];
@@ -34,12 +34,12 @@ ReviewEMG_6trials
 %Stop is determined individually for each recording in order to remove
 %extra data before stim presentation began
 
-stop1 = 73840;
-stop2 = 74940;
-stop3 = 74430;
-stop4 = 74420;
-stop5 = 74180;
-stop6 = 73260;
+stop1 = 76230;
+stop2 = 75830;
+stop3 = 74320;
+stop4 = 75800;
+stop5 = 74720;
+stop6 = 75610;
 
 durration = ((Fs*34)-1);
 
@@ -55,6 +55,7 @@ ReviewEEG_6trials
 %% (3) EXTRACT STIMTRAK CHANNEL AND CREATE CHANNELS FOR FFR AND CORTICAL ANALYSIS MARKERS %%
 %NOTE: Find threshold for StimTrak before running part 3 or the default of
 %20,000 will be used.
+close all
 [filteredEEGdata] = NEWPlaceMarkers_CapEMG(filteredEEGdata, Fs);
 [filteredEEGdata2] = NEWPlaceMarkers_CapEMG(filteredEEGdata2, Fs);
 [filteredEEGdata3] = NEWPlaceMarkers_CapEMG(filteredEEGdata3, Fs);

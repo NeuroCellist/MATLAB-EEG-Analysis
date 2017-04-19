@@ -1,10 +1,25 @@
 % RhyEEG Group Data Processing
 clear all
 clc
-%% Reads in FFT Data (repeat as needed)
-cd('/Users/charleswasserman/Dropbox (MDL)/rhyEeg/Data/N10/Cortical Data/ISO')
-load('s1_ISO_CortData.mat')
-s1_ISO_CortData = CorticalEpochData;
+%% Reads in FFT Data (set for loop iteration value to # of subjects)
+numSub = 10;
+subIDs = cell(numSub,1);
+Conditions = {'ISO', 'Comp1', 'Comp2', 'Rand'};
+RhyEEGData = {};
+for s = 1:numSub
+    if size(num2str(s),2) == 2
+   subIDs{s} = ['S17' num2str(s)]; 
+    else
+        subIDs{s} = ['S170' num2str(s)]; 
+    end
+end
+clear s
+addpath(genpath('/Users/charleswasserman/Dropbox (MDL)/rhyEeg/Data/'))
+FileName = {};
+FileName = [subID '_' Condition '.mat'];
+%%
+load(FileName)
+FileName{1} = CorticalEpochData;
 clear CorticalEpochData
 
 %% Concatenating Subjects into a single condition variable
