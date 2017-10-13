@@ -1,10 +1,10 @@
-function [ CorticalEpochData ] = NEWEpochingCortical( filteredEEGdata, Pre, Post, Fs )
+function [ CorticalEpochData ] = EpochingCortical( filteredEEGdata, Pre, Post, Fs )
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 
 if nargin <4
 
-   Fs = 25000;
+   Fs = 5000;
    
    display('Using Default Fs = 5000')
 end
@@ -12,11 +12,9 @@ end
 
 
 Trials=length(Pre);
-channels = size(filteredEEGdata,2);
-for c = 1:channels
+for c = 1:32
 for i = 1:Trials
-
-StimEpoch(:,c,i) = filteredEEGdata(Pre(i):Post(i)-1,c);
+StimEpoch(:,c,i) = filteredEEGdata(Pre(i):Post(i),c);
  
 end
 end

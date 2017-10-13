@@ -4,7 +4,7 @@ function [ filteredEEGdata ] = NEWPlaceMarkers_CapEMG( filteredEEGdata, Fs )
 Threshold = (.5.* max(filteredEEGdata(:,33)));
 StimTrak = filteredEEGdata(:,33);
 
-[Markers] = StimTrak_Markers(StimTrak, Threshold);
+[Markers] = StimTrak_Markers(StimTrak, Threshold, Fs);
 filteredEEGdata(:,38) = Markers;
 
 [CortMarkers] = StimTrak_Markers16s(StimTrak, Threshold, Fs);

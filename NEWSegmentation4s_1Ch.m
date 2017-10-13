@@ -15,7 +15,7 @@ elseif nargin<4
 end
 % this loads in data matrix called filteredEEGdata.  Column 3 = 1, where
 % stimulus is thought to turn on. There is jitter in this estimation.
-sec2pt = 1/5000;
+sec2pt = 1/Fs;
 
 [index v] = find(filteredEEGdata(:,6) == 1);
 clear d

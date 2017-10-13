@@ -4,12 +4,12 @@ function [ CorticalFFTdata ] =NEWCortFFT_6Parts( ArtifactedEpochData, Fs )
 chnames = {'Fp1' 'Fz' 'F3' 'F7' 'FT9' 'FC5' 'FC1' 'C3' 'T7' 'TP9' 'CP5' 'CP1' 'Pz' 'P3' 'P7' 'O1' 'Oz' 'O2' 'P4' 'P8' 'TP10' 'CP6' 'CP2' 'Cz' 'C4' 'T8' 'FT10' 'FC6' 'FC2' 'F4' 'F8' 'Fp2' 'StimTrak' 'Left Hand EMG' 'Right Hand EMG' 'Left Foot EMG' 'Right Foot EMG'};
 trials =size(ArtifactedEpochData,3);
 channels = size(ArtifactedEpochData,2);
-phase1 = nanmean(ArtifactedEpochData(:,:,1:7),3);
-phase2 = nanmean(ArtifactedEpochData(:,:,8:14),3);
-phase3 = nanmean(ArtifactedEpochData(:,:,15:21),3);
-phase4 = nanmean(ArtifactedEpochData(:,:,22:28),3);
-phase5 = nanmean(ArtifactedEpochData(:,:,29:35),3);
-phase6 = nanmean(ArtifactedEpochData(:,:,36:42),3);
+phase1 = nanmean(ArtifactedEpochData(:,:,1:6),3);
+phase2 = nanmean(ArtifactedEpochData(:,:,7:12),3);
+phase3 = nanmean(ArtifactedEpochData(:,:,13:18),3);
+phase4 = nanmean(ArtifactedEpochData(:,:,19:24),3);
+phase5 = nanmean(ArtifactedEpochData(:,:,25:30),3);
+phase6 = nanmean(ArtifactedEpochData(:,:,31:36),3);
 
 fftRes=4; %default is 4
 
